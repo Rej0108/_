@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>For You ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@400&display=swap" rel="stylesheet">
+
+<style>
+body{
+    margin:0;
+    overflow:hidden;
+    background: radial-gradient(circle at top,#0a0014,#000000);
+    font-family:'Poppins',sans-serif;
+    color:#ffd6e0;
+}
+
+/* 🌌 soft stars */
+.star{
+    position:absolute;
+    width:2px;
+    height:2px;
+    background:#ffccd5;
+    border-radius:50%;
+    opacity:0.5;
+}
+
+/* 💖 container */
+#box{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    text-align:center;
+    width:80%;
+}
+
+/* ✍️ text */
+#text{
+    font-size:30px;
+    font-family:'Dancing Script',cursive;
+    line-height:1.7;
+    color:#ffb3c6;
+    text-shadow:0 0 8px rgba(255,100,150,0.4);
+}
+
+/* ❤️ final */
+#love{
+    margin-top:25px;
+    font-size:42px;
+    color:#ff3366;
+    opacity:0;
+    text-shadow:0 0 15px #ff3366,0 0 35px rgba(255,50,100,0.5);
+}
+
+/* cursor */
+.cursor{
+    display:inline-block;
+    width:2px;
+    background:#ff99aa;
+    animation:blink 1s infinite;
+}
+@keyframes blink{
+    50%{opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<div id="box">
+    <div id="text"></div><span class="cursor"></span>
+    <div id="love">❤️ Love You Ammu ❤️</div>
+</div>
+
+<audio id="bgm" loop>
+<source src="piano.mp3">
+</audio>
+
+<script>
+
+/* 🌌 stars */
+for(let i=0;i<100;i++){
+    let s=document.createElement("div");
+    s.className="star";
+    s.style.left=Math.random()*window.innerWidth+"px";
+    s.style.top=Math.random()*window.innerHeight+"px";
+    document.body.appendChild(s);
+}
+
+/* ✍️ typing */
+let message = `Oiii lollipop... 😌
+
+Un kitta epovum jolly ah pesanum nu dhaan aasai aana eppadiyo athu vera maari poguthu
+Un voice uh kekkanum pola irruku ammu nee enna ethaachum solli thitanum...
+mukkiyama sanda podanum ellaam pothum ammu...
+
+Seri seri... romba mokka poda maaten 😅
+But honestly...
+Un kooda pesuna dhaa enakku konjam nalla ah irukkum nu thonuthu ❤️`;
+
+let i=0;
+
+function type(){
+    if(i < message.length){
+        document.getElementById("text").innerHTML += message[i] === "\n" ? "<br>" : message[i];
+        i++;
+        setTimeout(type,45);
+    }else{
+        setTimeout(()=>{
+            document.getElementById("love").style.opacity=1;
+        },800);
+    }
+}
+
+/* start */
+document.body.onclick=function(){
+    document.getElementById("bgm").play().catch(()=>{});
+    type();
+}
+</script>
+
+</body>
+</html>
